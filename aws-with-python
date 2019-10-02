@@ -1,0 +1,184 @@
+AWS with python
+
+Creating with bucket.
+
+import boto3
+s3=boto3.resource(“s3”)
+s3.create_bucket(Bucket=“packet-pub”)
+
+uploading files to S3.
+
+Import boto3
+
+s3=boto3.resource(“s3”)
+
+file_handle=open(“/home/packet-pub/test.txt”,”r”)
+
+s3.Bucket(“packet-pub”).put_object(Key=“test.txt”, Body=file_handle)
+
+with upload_file()
+  
+import boto3
+s3=boto3.resource(“s3”)
+s3.Bucket(“mybucket”).upload_file(“/tmp/test.txt”,”s3.txt”)(
+
+
+
+Listing s3 buckets
+
+Import boto3
+
+s3=boto3.resource(“s3”)
+for each in s3.buckets.all():
+	print(each)
+
+downloading files from S3
+
+import boto3
+s3=boto3.resource(“s3”)
+s.Bucket(“packt-pub”).download_file(“test.txt”, “/tmp/hello.txt”)
+
+deleting objects from a bucket
+
+import boto3
+s3=boto3.recource(“s3”)
+bucket=s3.Bucket(“packt-pub”)
+
+bucket.delete_objects(Delete={“Objects”:[
+{ “Key”: “tets.txt”,
+},
+],
+“Quiete”:true
+})
+
+Deleting a bucket
+
+Import boto3
+
+S3=boto3.resource(“s3”)
+
+Bucket=s3.Bucket(“packt-pub”)
+
+Response=bucket.delete()
+
+Python with EC2
+
+Launching ec2
+
+Import boto3
+
+ec2=boto3.resource(“ec2”)
+
+Instance=ec2.create_instances(
+	ImageId=”ami-xxxxx”,
+	MinCount=1,
+	MaxCount=1,
+	KeyName==”access”
+	InstanceType=”t1.micro”)
+Print instance[0].id
+
+Listing ec2 instances
+
+Import boto3
+
+ec2=boto3.resource(“ec2”)
+ for instance in ec2.instances.all():
+	print instance.id, instance.state();
+
+
+Terminating an EC2 instances
+
+
+
+Import boto3
+
+ec2=boto3.resource(“ec2”)
+
+
+
+instance= ec2.Instance(“i-xxxxxxxx”)
+response=instance.terminate()
+print response
+
+Amazon RDS with python
+
+Import botto3
+ 
+Rds=boto3.client(“rds”)
+
+Try:
+	Response=rds.create_db_instance{
+		DBInstanceIdentifier=”packtpub”
+		Masterusername=”dbadmin”
+		MasterUserPassword=”password”
+		DBInstanceClass=”db.t2.micro”
+		Engine=”mysql”
+		AllocatedStorage=5 }
+	Print response
+Except Exception as error:
+	Print error
+
+Listing Database instances
+
+Import boto3
+Rds=boto3.client(“rds”)
+
+Try:
+	Dbs=rds.describe_db_instances()
+
+	For db in dbs[“DBInstances”]:
+		Print(“MAsterUser : %s Endpoint : %s:%s Status:%s”) % (
+db[“masterUrname”]
+db[“Endpoint”][“Address”],
+db[“Endpoint”][“Port”]
+db[“DbInstanceStatus”])
+
+except Exception as error:
+	print error
+
+
+Amazon SNS application:
+Creation SNS topic.
+
+Import boto3
+
+sns_client=boto3.client(
+	“sns”, 
+	Aws_access_key_id=””
+	Aws_secret_access_key=””
+	Region_name=us-east-1
+)
+
+Sns_topic=sns_client.create_topic(name=“packet-pub”)
+Topic_arn=sns_topic[“TopicArn”]
+
+Subscribing to a topic.
+
+sns_client.subscriebe(
+	TopicArn=topic_arn,
+	Protocol=”email”,
+	Endpoint=manoj.hirway@packtub.com
+recipient
+)
+
+Publishing a message
+
+Sns_client.publish(Message=”Welcome”,
+TopicArn=topic_arn)
+
+Deleting topic
+
+Response=sns_client.delete_topic(
+	TopicArn=topic_arn
+)
+
+SQS application.
+
+Creating SQS queue
+
+Import boto3
+Sqs_object=boto3.client(“sqs”)
+Response=sqs_object.create_queue(
+QueueName=”sdsdss”
+)
+Queue_url=response[“QueueUrl”]
